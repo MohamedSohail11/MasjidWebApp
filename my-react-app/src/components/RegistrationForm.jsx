@@ -180,6 +180,7 @@ const RegistrationForm = () => {
                     return;
                 }
             }
+
         }
 
         // 3. Child Validation
@@ -662,6 +663,22 @@ const RegistrationForm = () => {
                                         <label className="form-label">Qualification / கல்வித் தகுதி</label>
                                         <input type="text" placeholder="Qualification" className="form-input" value={wife.qualification} onChange={(e) => handleWifeChange(index, 'qualification', e.target.value)} />
                                     </div>
+                                    
+                                    <div>
+                                        <label className="form-label">Blood Group / இரத்த வகை</label>
+                                        <select className="form-select" value={wife.bloodGroup} onChange={(e) => handleWifeChange(index, 'bloodGroup', e.target.value)}>
+                                            <option value="">Select / தேர்ந்தெடு</option>
+                                            <option value="A+">A+</option>
+                                            <option value="A-">A-</option>
+                                            <option value="B+">B+</option>
+                                            <option value="B-">B-</option>
+                                            <option value="AB+">AB+</option>
+                                            <option value="AB-">AB-</option>
+                                            <option value="O+">O+</option>
+                                            <option value="O-">O-</option>
+                                        </select>
+                                    </div>
+
                                     <div>
                                         <label className="form-label">Status / நிலை <span className="required">*</span></label>
                                         <select className="form-select" required value={wife.status} onChange={(e) => handleWifeChange(index, 'status', e.target.value)}>
