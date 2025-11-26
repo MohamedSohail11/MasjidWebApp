@@ -205,7 +205,7 @@ const RegistrationForm = () => {
             aadharNumber: formData.aadharNumber || null,
             qualification: formData.qualification || null,
 
-            marriageDate: null,
+            marriageDate: formData.wife.marriageDate || null,
             bloodGroup: activeBloodGroup || null,
 
             occupation: OccupationTypeEnum[formData.occupationType] !== undefined ? OccupationTypeEnum[formData.occupationType] : null,
@@ -617,7 +617,7 @@ const RegistrationForm = () => {
                                         onClick={() => selectWivesCount(num)}
                                     >
                                         <div className="text-2xl">{num}</div>
-                                        <div className="text-xs mt-1">{num === 1 ? 'One Wife' : `${num} Wives`}</div>
+                                        <div className="text-xs mt-1">{num === 1 ? ' Wife' : ` Wives`}</div>
                                     </div>
                                 ))}
                             </div>
@@ -626,13 +626,13 @@ const RegistrationForm = () => {
                         {formData.wives.map((wife, index) => (
                             <div key={index} className="wife-card">
                                 <div className="wife-header">
-                                    {['First', 'Second', 'Third', 'Fourth'][index]} Wife Details
+                                    {['First', 'Second', 'Third', 'Fourth'][index]} Wife Details / மனைவி {['1', '2', '3', '4'][index]} விவரங்கள்
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     {/* Wife Fields */}
                                     <div>
                                         <label className="form-label">Name / பெயர்</label>
-                                        <input type="text" className="form-input" value={wife.name} onChange={(e) => handleWifeChange(index, 'name', e.target.value)} />
+                                        <input type="text" placeholder="Wife's name" className="form-input" value={wife.name} onChange={(e) => handleWifeChange(index, 'name', e.target.value)} />
                                     </div>
                                     <div>
                                         <label className="form-label">Date of Birth / பிறந்த தேதி</label>
@@ -640,7 +640,7 @@ const RegistrationForm = () => {
                                     </div>
                                     <div>
                                         <label className="form-label">Marriage Date / திருமண தேதி</label>
-                                        <input type="date" id="wife1MarriageDate" name="wife1MarriageDate" className="form-input" max="2025-12-31" />
+                                        <input type="date" className="form-input" value={wife.marriageDate} onChange={(e) => handleWifeChange(index, 'marriageDate', e.target.value)} />
                                     </div>
                                     <div>
                                         <label className="form-label">Occupation / தொழில்</label>
@@ -663,7 +663,6 @@ const RegistrationForm = () => {
                                         <label className="form-label">Qualification / கல்வித் தகுதி</label>
                                         <input type="text" placeholder="Qualification" className="form-input" value={wife.qualification} onChange={(e) => handleWifeChange(index, 'qualification', e.target.value)} />
                                     </div>
-                                    
                                     <div>
                                         <label className="form-label">Blood Group / இரத்த வகை</label>
                                         <select className="form-select" value={wife.bloodGroup} onChange={(e) => handleWifeChange(index, 'bloodGroup', e.target.value)}>
@@ -706,6 +705,7 @@ const RegistrationForm = () => {
                                 <label className="form-label">Date of Birth / பிறந்த தேதி</label>
                                 <input type="date" name="husbandDOB" className="form-input" value={formData.husbandDOB} onChange={handleChange} />
                             </div>
+    
                             <div>
                                 <label className="form-label">Occupation / தொழில்</label>
                                 <input type="text" name="husbandOccupation" className="form-input" value={formData.husbandOccupation} onChange={handleChange} />
@@ -744,7 +744,7 @@ const RegistrationForm = () => {
                                 </div>
                                 <div>
                                     <label className="form-label">Date of Birth / பிறந்த தேதி</label>
-                                    <input type="date" name="child1DOB" className="form-input" max="2025-12-31" />
+                                    <input type="date" className="form-input" value={child.dob} onChange={(e) => handleChildChange(index, 'dob', e.target.value)} />
                                 </div>
                                 <div>
                                     <label className="form-label">Mother / தாய்</label>
@@ -755,7 +755,7 @@ const RegistrationForm = () => {
                                 </div>
                                 <div>
                                     <label className="form-label">Qualification / கல்வித் தகுதி</label>
-                                    <input type="text" name="child1Qualification" className="form-input" placeholder="Qualification" />
+                                    <input type="text" placeholder="Qualification" className="form-input" value={child.qualification} onChange={(e) => handleChildChange(index, 'qualification', e.target.value)} />
                                 </div>
                                 <div>
                                     <label className="form-label">Marriage Status / திருமண நிலை</label>
@@ -768,7 +768,7 @@ const RegistrationForm = () => {
                                 </div>
                                 <div>
                                     <label className="form-label">Blood Group / இரத்த வகை</label>
-                                    <select name="child1BloodGroup" className="form-select">
+                                    <select className="form-select" value={child.bloodGroup} onChange={(e) => handleChildChange(index, 'bloodGroup', e.target.value)}>
                                         <option value="">Select / தேர்ந்தெடு</option>
                                         <option value="A+">A+</option>
                                         <option value="A-">A-</option>
